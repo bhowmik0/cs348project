@@ -1,0 +1,14 @@
+<h1>Potluck Events</h1>
+<a href="{% url 'event_create' %}">+ Add Event</a>
+<ul>
+  {% for event in events %}
+    <li>
+      {{ event.title }} - {{ event.date }}
+      [<a href="{% url 'event_edit' event.pk %}">Edit</a>]
+      [<a href="{% url 'event_delete' event.pk %}">Delete</a>]
+      [<a href="{% url 'dish_signup_create_with_event' event.pk %}">Sign Up a Dish</a>]
+      [<a href="{% url 'dish_signups_for_event' event.pk %}">View Dishes</a>]
+    </li>
+  {% endfor %}
+</ul>
+<a href="{% url 'event_report' %}">Generate Event Report</a>

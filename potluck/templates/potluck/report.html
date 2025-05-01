@@ -1,0 +1,36 @@
+<h1>Potluck Event Report</h1>
+
+<form method="get">
+  {{ form.as_p }}
+  <button type="submit">Generate Report</button>
+</form>
+
+{% if results %}
+  <h2>Results:</h2>
+  <table border="1">
+    <tr>
+      <th>Event</th>
+      <th>Date</th>
+      <th>Total Dishes</th>
+    </tr>
+    {% for event in results %}
+      <tr>
+        <td>{{ event.1 }}</td>
+        <td>{{ event.2 }}</td>
+        <td>{{ event.3 }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  <h3>Statistics</h3>
+  <ul>
+    <li>Total Events: {{ stats.total_events }}</li>
+    <li>Average Dishes per Event: {{ stats.avg_dishes }}</li>
+    <li>Most Common Dish Category: {{ stats.most_common_category|default:"N/A" }}</li>
+  </ul>
+{% elif form.is_bound %}
+  <p>No matching events found for this filter.</p>
+{% endif %}
+
+
+<a href="{% url 'event_list' %}">← Back to Events</a>

@@ -1,0 +1,10 @@
+<h1>Dish Signups</h1>
+<a href="{% url 'dish_signup_create' %}">+ Add Dish Signup</a>
+<ul>
+  {% for signup in signups %}
+    <li>
+      {{ signup.participant.username }} bringing "{{ signup.dish_name }}" ({{ signup.category }}) for {{ signup.event.title }}
+    </li>
+  {% endfor %}
+</ul>
+<a href="{% url 'event_list' %}">Back to Events</a>

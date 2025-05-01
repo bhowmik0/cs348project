@@ -1,0 +1,14 @@
+<h1>Dishes for {{ event.title }}</h1>
+
+<ul>
+  {% for signup in signups %}
+    <li>
+      {{ signup.participant.username }} is bringing "{{ signup.dish_name }}" ({{ signup.category }})
+    </li>
+  {% empty %}
+    <li>No one has signed up yet.</li>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'dish_signup_create_with_event' event.pk %}">+ Sign Up a Dish</a><br>
+<a href="{% url 'event_list' %}">← Back to Events</a>
